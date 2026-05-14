@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ankit - The Untold Story</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Georgia, serif;
+    }
+
+    body{
+      background:#000;
+      color:white;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* HERO PAGE */
+    .hero-page{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      text-align:center;
+      padding:20px;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.92)),
+        url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=1500&q=80');
+      background-size:cover;
+      background-position:center;
+    }
+
+    /* RAIN EFFECT */
+    .hero-page::before{
+      content:"";
+      position:absolute;
+      top:-150%;
+      left:-20%;
+      width:140%;
+      height:400%;
+      background-image:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.18) 0px,
+        rgba(255,255,255,0.18) 2px,
+        transparent 3px,
+        transparent 18px
+      );
+      transform:rotate(15deg);
+      animation:rain 0.35s linear infinite;
+      opacity:0.45;
+    }
+
+    @keyframes rain{
+      from{transform:translateY(-120%) rotate(15deg);}
+      to{transform:translateY(120%) rotate(15deg);}
+    }
+
+    .hero-top{
+      position:absolute;
+      top:20px;
+      left:20px;
+      right:20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      z-index:5;
+    }
+
+    .site-title{
+      font-size:1.2rem;
+      font-style:italic;
+    }
+
+    .music-btn{
+      padding:12px 22px;
+      border:none;
+      border-radius:30px;
+      background:rgba(255,255,255,0.1);
+      color:white;
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      font-size:1rem;
+    }
+
+    .hero-center{
+      position:relative;
+      z-index:2;
+      max-width:850px;
+    }
+
+    .ankit-main{
+      font-size:7rem;
+      margin:0;
+      letter-spacing:6px;
+      text-shadow:0 0 20px rgba(255,255,255,0.25);
+    }
+
+    .untold-main{
+      font-size:2rem;
+      margin-bottom:30px;
+      letter-spacing:4px;
+    }
+
+    .hero-desc{
+      font-size:2rem;
+      line-height:1.7;
+      color:#f1f1f1;
+    }
+
+    .divider{
+      width:220px;
+      height:2px;
+      background:rgba(255,255,255,0.4);
+      margin:25px auto;
+    }
+
+    .hero-poetry{
+      margin-top:20px;
+      font-size:2rem;
+      font-style:italic;
+      color:#d9ddff;
+      line-height:1.8;
+    }
+
+    .story-btn{
+      margin-top:40px;
+      padding:18px 45px;
+      font-size:1.8rem;
+      background:rgba(0,0,0,0.6);
+      color:white;
+      border:2px solid rgba(255,255,255,0.2);
+      border-radius:14px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .story-btn:hover{
+      background:white;
+      color:black;
+      transform:scale(1.05);
+    }
+
+    .hero-bottom{
+      position:absolute;
+      bottom:20px;
+      left:0;
+      right:0;
+      display:flex;
+      justify-content:space-around;
+      z-index:5;
+      font-size:1rem;
+    }
+
+    /* STORY PAGES */
+    .story-section{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:60px 20px;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.88), rgba(10,10,10,0.96));
+    }
+
+    .story-section h2{
+      font-size:3rem;
+      margin-bottom:25px;
+    }
+
+    .story-section p{
+      max-width:900px;
+      font-size:1.35rem;
+      line-height:1.9;
+      color:#ddd;
+    }
+
+    .shayari{
+      margin-top:25px;
+      font-size:1.5rem;
+      font-style:italic;
+      color:#cfcfcf;
+      max-width:850px;
+      line-height:1.8;
+    }
+
+    footer{
+      padding:30px;
+      text-align:center;
+      background:#000;
+      color:#888;
+    }
+
+    /* MOBILE */
+    @media(max-width:768px){
+      .ankit-main{font-size:4rem;}
+      .untold-main{font-size:1.2rem;}
+      .hero-desc{font-size:1.2rem;}
+      .hero-poetry{font-size:1.25rem;}
+      .story-btn{font-size:1.2rem; padding:14px 28px;}
+      .hero-bottom{font-size:0.8rem;}
+      .site-title{font-size:1rem;}
+      .story-section h2{font-size:2rem;}
+      .story-section p{font-size:1.1rem;}
+      .shayari{font-size:1.2rem;}
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO PAGE -->
+<section class="hero-page">
+
+  <div class="hero-top">
+    <div class="site-title">☰ Ankit - The Untold Story</div>
+    <button class="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+  </div>
+
+  <div class="hero-center">
+    <h1 class="ankit-main">ANKIT</h1>
+    <h2 class="untold-main">- THE UNTOLD STORY -</h2>
+
+    <p class="hero-desc">
+      Ek ladka... jo hasta tha sabke saamne,<br>
+      par andar hi andar har din toot raha tha.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="hero-poetry">
+      "Chehre pe muskaan thi, par dil mein andhera tha...<br>
+      Jo sabko apna maanta tha, uska apna koi na tha."
+    </div>
+
+    <button class="story-btn" onclick="scrollToSection(1)">
+      BEGIN STORY →
+    </button>
+  </div>
+
+  <div class="hero-bottom">
+    <span>🎧 STAY STRONG</span>
+    <span>👑</span>
+    <span>KEEP PUSHING ⚡</span>
+  </div>
+
+</section>
+
+<!-- PAGE 2 -->
+<section class="story-section">
+  <h2>Phase 1 - Class 10th</h2>
+  <p>
+    15 saal ka Ankit...<br>
+    Jab dusre bachche sirf padh rahe the,<br>
+    tab woh expectations aur pressure ke neeche dab raha tha...<br>
+    Family... studies... aur comparisons...
+  </p>
+  <div class="shayari">
+    "Kitabon ke bojh ke neeche... ek bachpan chup sa gaya..."
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="story-section">
+  <h2>Phase 2 - Silence</h2>
+  <p>
+    Woh bolna chahta tha...<br>
+    Par sunne wala koi nahi tha...<br>
+    Dheere dheere usne khamoshi ko apna liya...
+  </p>
+  <div class="shayari">
+    "Jab alfaaz saath chhod dete hain... tab khamoshi sab keh deti hai..."
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="story-section">
+  <h2>Phase 3 - Lost</h2>
+  <p>
+    Kabhi kabhi sab kuch itna bhaari ho jaata hai...<br>
+    Ki insaan bas khud ko dhoondhne nikal padta hai...
+  </p>
+  <div class="shayari">
+    "Bhaagna kamzori nahi... kabhi kabhi bachna hota hai..."
+  </div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="story-section">
+  <h2>Phase 4 - Return</h2>
+  <p>
+    Wapas toh aa gaya...<br>
+    Par jo andar toot gaya tha...<br>
+    Woh waise ka waisa hi reh gaya...
+  </p>
+  <div class="shayari">
+    "Sabne chehra dekha... kisi ne dard nahi..."
+  </div>
+</section>
+
+<!-- PAGE 6 -->
+<section class="story-section">
+  <h2>Phase 5 - Raushan</h2>
+  <p>
+    Ek bhai tha... Raushan...<br>
+    Zyada bolta nahi tha...<br>
+    Par har baar saath khada tha...<br>
+    Kabhi kabhi bas itna hi kaafi hota hai...
+  </p>
+  <div class="shayari">
+    "Kuch rishte awaaz nahi karte... bas sambhal lete hain..."
+  </div>
+</section>
+
+<!-- PAGE 7 -->
+<section class="story-section">
+  <h2>Phase 6 - Still Fighting</h2>
+  <p>
+    Aaj bhi ladai chal rahi hai...<br>
+    Mind se... pressure se... khud se...<br>
+    Par Ankit ab bhi khada hai...
+  </p>
+  <div class="shayari">
+    "Main टूटा zaroor hoon... par khatam nahi."
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="story-section">
+  <h2>Final Words</h2>
+  <p>
+    Ye sirf ek story nahi...<br>
+    Har us insaan ki kahani hai...<br>
+    Jo chup rehkar bhi roz lad raha hai...
+  </p>
+  <div class="shayari">
+    "Kuch dard dikhte nahi... sirf mehsoos hote hain..."
+  </div>
+</section>
+
+<footer>
+  Made with pain, silence & strength | Ankit's Story
+</footer>
+
+<script>
+  function scrollToSection(index){
+    document.querySelectorAll("section")[index].scrollIntoView({
+      behavior:"smooth"
+    });
+  }
+
+  function toggleMusic(){
+    const music = document.getElementById("bgMusic");
+    const btn = document.querySelector(".music-btn");
+
+    if(music.paused){
+      music.play()
+      .then(() => {
+        btn.innerHTML = "⏸ Pause Music";
+      })
+      .catch(() => {
+        alert("Button dubara tap kar music start hoga.");
+      });
+    } else {
+      music.pause();
+      btn.innerHTML = "🎵 Play Music";
+    }
+  }
+</script>
+
+</body>
+</html>
